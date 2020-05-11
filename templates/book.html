@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Search Books</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+
+<style>
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+h1,h3{
+text-align: center;
+}
+p{
+  padding: 4%;
+}
+* {
+  box-sizing: border-box;
+}
+
+.bg-image {
+  /* The image used */
+  background-image: url("https://images.pexels.com/photos/2041540/pexels-photo-2041540.jpeg?cs=srgb&dl=chair-beside-book-shelves-2041540.jpg&fm=jpg");
+
+  /* Add the blur effect */
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Position text in the middle of the page/image */
+.bg-text {
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+  color: white;
+  border: 3px solid #f1f1f1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 80%;
+  padding: 2%;
+  text-align: center;
+}
+.img1{
+  padding-top: 30%;
+  padding-bottom: : 30%;
+}
+.space{
+  padding-bottom: 4%;
+}
+</style>
+</head>
+</style>
+</head>
+<body>
+<div class="bg-image"></div>
+  <div class="bg-text">
+  <h2><a href="#"><button type="button" class="btn btn-outline-light" style="float: left;">Username : {{ session.user_name }}</button></a>
+      {{bookInfo[0]['title']}}<a href="{{url_for('logout')}}"><button type="button" class="btn btn-outline-light" style="float: right;">Log-Out</button></a></h2>
+      <div class="dropdown-divider"></div>
+      <div class="container1">
+            <div class="row">
+                <div class="col-lg-4 col-sm-6"><p>
+                  <h5>Author: {{bookInfo[0]['author']}}</h5>
+                  <h5>Published: {{bookInfo[0]['year']}}</h5>
+                  <h5>ISBN-10: {{bookInfo[0]['isbn']}}</h5></p>
+<p>                    <img src="https://d.gr-assets.com/misc/1454549184-1454549184_goodreads_misc.jpg" alt="Goodreads" height="15%" width="50%"></p>
+  <p>                  <h5>Number of Ratings: {{bookInfo[1]['work_ratings_count']}}</h5>
+                    <h5>Average Rating: {{bookInfo[1]['average_rating']}}</h5>
+                    <h5>
+                      Go to <a href="https://www.goodreads.com/search?q={{bookInfo[0]['title']}}">GOODREADS</a> page
+                    </h5></p>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                  <img class="img1" src="http://covers.openlibrary.org/b/isbn/{{bookInfo[0]['isbn']}}-M.jpg" width=200px height=350px>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                <h4>REVIEWS</h4>
+              <div class="dropdown-divider"></div>
+
+                 <!-- REVIEW FORM -->
+<form method="POST" class="form-border">
+
+  <div class="form-group">
+
+    <textarea name="comment" placeholder="Write your review here :" class="form-control" rows="2" id="comment"></textarea>
+  </div>
+<div class="form-row">
+                <div class="form-group col-sm">
+
+                  <h6>Rate this book : </h6>
+                              <select id="rating" name="rating" class="form-control" col="2" required>
+                                         <option value="1"> 1 : DIDN'T LIKE </option>
+                                         <option value="2"> 2 : OK </option>
+                                         <option selected value="3"> 3 : AVERAGE</option>
+                                         <option value="4">4 : GREAT</option>
+                                         <option value="5">5 : PHENOMENAL </option>
+                                     </select>
+                             <button class="btn btn-success" type="submit">Submit</button>
+                         </div></div>
+                     </form>
+
+                 <!-- REVIEW LIST -->
+                 <div id="userReviews">
+                     {% for review in reviews %}
+                     <div class="list-group">
+                         <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                             <div class="d-flex w-100 justify-content-between">
+                                 <h6 class="mb-1" style="color:brown">{{review['name']}} : </h6><small>Rated: {{review['rating']}}</small>
+                             </div>
+                             {{review['comment']}}
+
+                         </a>
+                     {% endfor %}
+                 </div>
+              </div></div>
+
+</div>
+</div>
+</body>
+</html>

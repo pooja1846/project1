@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Home</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+<style>
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+h1,h3{
+text-align: center;
+}
+form{
+  width:50%;
+  margin-left: 25%;
+  margin-right: 25%;
+}
+* {
+  box-sizing: border-box;
+}
+
+.bg-image {
+  /* The image used */
+  background-image: url("https://images.pexels.com/photos/2041540/pexels-photo-2041540.jpeg?cs=srgb&dl=chair-beside-book-shelves-2041540.jpg&fm=jpg");
+
+  /* Add the blur effect */
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Position text in the middle of the page/image */
+.bg-text {
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+  color: white;
+  font-weight: bold;
+  border: 3px solid #f1f1f1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 50%;
+  text-align: center;
+}
+div{
+  text-align: right ;
+}
+</style>
+</head>
+<body>
+<div class="bg-image"></div>
+<div class="bg-text">
+  <form action="{{url_for('login')}}" method="post">
+    <h1> LOG-IN </h1>
+    <h5> For already existing users </h5>
+          <div class="form-group">
+            <input class="form-control" name="name" placeholder="Enter your name" type="text">
+          </div>
+          <div class="form-group">
+            <input class="form-control" name="password" placeholder="Enter your password" type="password">
+          </div>
+          <div class="form-group">
+            <button class="btn btn-primary" type="submit">Log-in</button>
+          </div>
+      </form>
+    <div>  New to ? <a href="{{url_for('signup')}}">SIGNUP  </a></div>
+  </div>
+</body>
+</html>
