@@ -20,10 +20,10 @@ if not os.getenv("DATABASE_URL"):
 # Configure session to use filesystem
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
-app.config["SECRET_KEY"]= b'\x1d\xe2N\x13\xcd\xe3\x18i\xc9\xce\xd3\xb4 \xc6\x89\xa7'
 Session(app)
 
-engine = create_engine("postgres://sdbnynywlkbuwj:30693d76441fc30cd14bafc55a06c5d69da7db4f93b5814adfac2c0b9228e792@ec2-3-91-139-25.compute-1.amazonaws.com:5432/dmbdpe144drlf")
+
+engine = create_engine(os.getenv("DATABASE_URL"))
 db = scoped_session(sessionmaker(bind=engine))
 
 @app.route("/")
